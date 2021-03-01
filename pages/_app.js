@@ -10,11 +10,7 @@ export const GlobalContext = createContext({});
 
 const MyApp = ({ Component, pageProps }) => {
   // const { global } = pageProps;
-  const [global,setGlobal] = useState({});
-  useEffect(async ()=>{
-    // const global_i = await fetch("http://localhost:1337/global");
-    // setGlobal(global_i)
-  },[])
+
   return (
     <>
       <Head>
@@ -31,9 +27,9 @@ const MyApp = ({ Component, pageProps }) => {
         <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
       </Head>
-      <GlobalContext.Provider value={global}>
+      {/* <GlobalContext.Provider value={global}> */}
         <Component {...pageProps} />
-      </GlobalContext.Provider>
+      {/* </GlobalContext.Provider> */}
     </>
   );
 };

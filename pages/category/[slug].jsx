@@ -11,7 +11,7 @@ const Category = ({ category, categories }) => {
 
   return (
     <Layout categories={categories}>
-      <Seo seo={seo} />
+      {/* <Seo seo={seo} /> */}
       <div className="uk-section">
         <div className="uk-container uk-container-large">
           <h1>{category.name}</h1>
