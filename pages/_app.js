@@ -1,7 +1,7 @@
 import App from "next/app";
 import Head from "next/head";
 import "../assets/css/style.css";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getStrapiMedia } from "../lib/media";
 import { fetchAPI } from "../lib/api";
 
@@ -9,12 +9,16 @@ import { fetchAPI } from "../lib/api";
 export const GlobalContext = createContext({});
 
 const MyApp = ({ Component, pageProps }) => {
-  const { global } = pageProps;
-
+  // const { global } = pageProps;
+  const [global,setGlobal] = useState({});
+  useEffect(async ()=>{
+    // const global_i = await fetch("http://localhost:1337/global");
+    // setGlobal(global_i)
+  },[])
   return (
     <>
       <Head>
-        <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} />
+        {/* <link rel="shortcut icon" href={getStrapiMedia(global.favicon)} /> */}
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Staatliches"
@@ -38,13 +42,13 @@ const MyApp = ({ Component, pageProps }) => {
 // have getStaticProps. So article, category and home pages still get SSG.
 // Hopefully we can replace this with getStaticProps once this issue is fixed:
 // https://github.com/vercel/next.js/discussions/10949
-MyApp.getInitialProps = async (ctx) => {
-  // Calls page's `getInitialProps` and fills `appProps.pageProps`
-  const appProps = await App.getInitialProps(ctx);
-  // Fetch global site settings from Strapi
-  const global = await fetchAPI("/global");
-  // Pass the data to our page via props
-  return { ...appProps, pageProps: { global } };
-};
+// MyApp.getInitialProps = async (ctx) => {
+//   // Calls page's `getInitialProps` and fills `appProps.pageProps`
+//   const appProps = await App.getInitialProps(ctx);
+//   // Fetch global site settings from Strapi
+//   const global = await fetchAPI("/global");
+//   // Pass the data to our page via props
+//   return { ...appProps, pageProps: { global } };
+// };
 
 export default MyApp;
